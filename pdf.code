@@ -1,0 +1,64 @@
+<?php
+function fetch_data()
+{
+$output='';
+$connect=mysqli_connect("localhost", "root", "", "testing");
+$query=(SELECT * FROM registerrss ORDER BY id ASC");
+$result= mysqli_query($connect,$query);
+while($row=mysqli_fetch_array($result))
+{$output .='
+      <tr>
+	  <td>'.$row["id"].'</td>
+	   <td>'.$row["firstname"].'</td>
+	    <td>'.$row["lastname"].'</td>
+		 <td>'.$row["email"].'</td>
+		  <td>'.$row["password"].'</td>
+		   <td>'.$row["user_type"].'</td>
+		    <td>'.$row["created_at"].'</td>
+
+ </tr>
+ ';
+	 
+}
+return $output;
+
+}
+
+?>
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Movie Ratings and Review
+ </title>
+ <link rel=""/>
+ </head>
+ <body>
+ <br/><br/>
+ <div class="container" style="width:700px;">
+ <h3 align="center">Movie Ratings and Review/>
+ <br/>
+ <div class="table-responsive">
+ <table class="table table-bordered">
+ <tr>
+ <th width="5%">ID</th>
+ <th width="20%">firstname</th>
+ <th width="200%">lastname</th>
+ <th width="40%">email</th>
+ <th width="20%">password</th>
+ <th width="20%">user_type</th>
+ <th width="40%">created_at</th>
+ </tr>
+ <?php 
+ echo fetch_data();
+ ?>
+ </table>
+ <br/>
+ <from method="post">
+ <input type="submit" name="create_pdf" class="btn btn-danger" value="Create_PDF" />
+ </from>
+ <br/>
+ <br/>
+ </div>
+ </div>
+ </body>
+ <html>
